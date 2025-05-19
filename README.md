@@ -3603,4 +3603,763 @@ By keeping items in an array and updating the DOM when items are added or remove
 
 
 ---
+# SCENERIO BASED - (QUESTION SET)
+
+## 1. What is JavaScript?
+
+**Answer:**
+JavaScript is a programming language used to make web pages interactive. It runs in the browser and can manipulate HTML/CSS, respond to user events, and communicate with servers.
+
+---
+
+## 2. How do you declare variables in JavaScript?
+
+**Answer:**
+You can declare variables using `var`, `let`, or `const`.
+
+* `var` is function scoped (older style)
+* `let` and `const` are block scoped (modern preferred)
+* `const` variables cannot be reassigned
+
+**Example:**
+
+```js
+var x = 10;         // function scoped  
+let y = 20;         // block scoped  
+const name = "Sam"; // block scoped and constant  
+```
+
+---
+
+## 3. What is the difference between `var`, `let`, and `const`?
+
+**Answer:**
+
+* `var` declarations are hoisted and function scoped, meaning accessible throughout the function.
+* `let` and `const` are block scoped (only inside `{}`) and are not initialized before declaration (no hoisting like `var`).
+* `const` must be assigned at declaration and cannot be reassigned.
+
+**Example:**
+
+```js
+if (true) {
+  var a = 1;
+  let b = 2;
+  const c = 3;
+}
+console.log(a); // 1 (var is function scoped)
+console.log(b); // ReferenceError (block scoped)
+console.log(c); // ReferenceError (block scoped)
+```
+
+---
+
+## 4. What are primitive data types in JavaScript?
+
+**Answer:**
+JavaScript has 7 primitive types:
+
+* `Number` (e.g., 10, 3.14)
+* `String` (e.g., "Hello")
+* `Boolean` (true/false)
+* `Null` (intentional absence of any value)
+* `Undefined` (variable declared but not assigned)
+* `Symbol` (unique identifiers)
+* `BigInt` (large integers beyond Number limits)
+
+---
+
+## 5. What is hoisting?
+
+**Answer:**
+Hoisting means JavaScript moves variable and function declarations to the top of their scope before execution. Only declarations are hoisted, not initializations.
+
+**Example:**
+
+```js
+console.log(x); // undefined (declaration hoisted, initialization not)
+var x = 5;
+
+foo();          // works because function declarations are hoisted
+function foo() {
+  console.log("Hello");
+}
+```
+
+---
+
+## 6. How do you declare a function?
+
+**Answer:**
+There are several ways: function declaration, function expression, and arrow function.
+
+**Function declaration:**
+
+```js
+function greet() {
+  console.log("Hello");
+}
+greet();  // Output: Hello
+```
+
+**Function expression:**
+
+```js
+const greet = function() {
+  console.log("Hello");
+};
+greet();
+```
+
+**Arrow function:**
+
+```js
+const greet = () => {
+  console.log("Hello");
+};
+greet();
+```
+
+---
+
+## 7. What is a closure?
+
+**Answer:**
+A closure is when a function “remembers” the variables from its outer scope even after the outer function has finished executing.
+
+**Example:**
+
+```js
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+const counter = outer();
+counter(); // 1
+counter(); // 2
+```
+
+---
+
+## 8. What is the difference between `==` and `===`?
+
+**Answer:**
+
+* `==` checks equality with type coercion (converts types before comparing).
+* `===` checks strict equality without type conversion.
+
+**Example:**
+
+```js
+5 == "5";  // true (type coercion)
+5 === "5"; // false (different types)
+```
+
+---
+
+## 9. How does a `for` loop work? Write an example that prints 1 to 5.
+
+**Answer:**
+A `for` loop has three parts: initialization, condition, and increment/decrement.
+
+**Example:**
+
+```js
+for(let i = 1; i <= 5; i++) {
+  console.log(i);
+}
+// Output: 1 2 3 4 5
+```
+
+---
+
+## 10. What is the difference between `for...in` and `for...of` loops?
+
+**Answer:**
+
+* `for...in` loops over **keys** (property names) in an object or array indices.
+* `for...of` loops over **values** in an iterable like arrays or strings.
+
+**Example:**
+
+```js
+const arr = ["a", "b", "c"];
+
+for(let index in arr) {
+  console.log(index); // prints 0, 1, 2
+}
+
+for(let value of arr) {
+  console.log(value); // prints "a", "b", "c"
+}
+```
+
+---
+
+## 11. How do you select an element by ID in the DOM?
+
+**Answer:**
+Use `document.getElementById()` which returns the element with the specified ID.
+
+**Example:**
+
+```html
+<div id="myDiv">Hello</div>
+<script>
+  const el = document.getElementById("myDiv");
+  console.log(el.innerText);  // Output: Hello
+</script>
+```
+
+---
+
+## 12. How do you add a click event listener to a button?
+
+**Answer:**
+Use `addEventListener()` method on the element.
+
+**Example:**
+
+```html
+<button id="btn">Click me</button>
+<script>
+  const btn = document.getElementById("btn");
+  btn.addEventListener("click", () => {
+    alert("Button clicked!");
+  });
+</script>
+```
+
+---
+
+## 13. What is a Promise in JavaScript?
+
+**Answer:**
+A Promise represents the eventual completion or failure of an asynchronous operation and its resulting value.
+
+---
+
+## 14. How do you make a GET request using Fetch API?
+
+**Answer:**
+
+```js
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+```
+
+---
+
+## 15. What is async/await? Provide an example.
+
+**Answer:**
+`async/await` allows writing asynchronous code that looks synchronous.
+
+**Example:**
+
+```js
+async function fetchData() {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+fetchData();
+```
+
+---
+
+## 16. How do you create and remove elements from the DOM?
+
+**Answer:**
+Use `document.createElement()` and `.remove()`.
+
+**Example:**
+
+```js
+const newDiv = document.createElement('div');
+newDiv.innerText = "I'm new here!";
+document.body.appendChild(newDiv);
+
+// To remove
+newDiv.remove();
+```
+
+---
+
+## 17. Write a function to reverse a string.
+
+**Answer:**
+
+```js
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+console.log(reverseString("hello")); // Output: "olleh"
+```
+
+---
+
+## 18. How does the `this` keyword behave in arrow functions vs regular functions?
+
+**Answer:**
+
+* In regular functions, `this` depends on how the function is called.
+* Arrow functions inherit `this` from the enclosing lexical context.
+
+---
+
+## 19. What are default parameters? Show example.
+
+**Answer:**
+Parameters with default values if not provided.
+
+**Example:**
+
+```js
+function greet(name = "Guest") {
+  console.log("Hello, " + name);
+}
+greet();          // Hello, Guest
+greet("Alice");   // Hello, Alice
+```
+
+---
+
+## 20. What is a closure and how is it used?
+
+**Answer:**
+Closure is a function remembering its outer scope variables.
+
+**Example:**
+
+```js
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+}
+const add5 = makeAdder(5);
+console.log(add5(3));  // Output: 8
+```
+
+
+
+## 21. What is event bubbling in JavaScript?
+
+**Answer:**
+Event bubbling is when an event triggered on a child element propagates (bubbles up) to its parent elements, triggering their event handlers too.
+
+**Example:**
+
+```js
+document.getElementById('child').addEventListener('click', () => alert('Child clicked'));
+document.getElementById('parent').addEventListener('click', () => alert('Parent clicked'));
+```
+
+Clicking the child triggers both alerts because the event bubbles up.
+
+---
+
+## 22. How do you prevent event bubbling?
+
+**Answer:**
+Use `event.stopPropagation()` inside the event handler to stop the event from bubbling up.
+
+**Example:**
+
+```js
+child.addEventListener('click', (event) => {
+  event.stopPropagation();
+  alert('Child clicked only');
+});
+```
+
+---
+
+## 23. What are template literals in JavaScript?
+
+**Answer:**
+Template literals are strings enclosed by backticks (`` ` ``) allowing embedded expressions using `${}`.
+
+**Example:**
+
+```js
+const name = "Alice";
+console.log(`Hello, ${name}!`); // Output: Hello, Alice!
+```
+
+---
+
+## 24. How do you handle errors in JavaScript?
+
+**Answer:**
+Use `try...catch` blocks to catch exceptions.
+
+**Example:**
+
+```js
+try {
+  let result = riskyOperation();
+} catch (error) {
+  console.error("Error caught:", error);
+}
+```
+
+---
+
+## 25. What is the difference between `null` and `undefined`?
+
+**Answer:**
+
+* `undefined` means a variable is declared but not assigned a value.
+* `null` is an assignment value representing "no value" or "empty."
+
+---
+
+## 26. What is the difference between synchronous and asynchronous code?
+
+**Answer:**
+
+* Synchronous code runs line-by-line, blocking further execution until done.
+* Asynchronous code runs independently, allowing other code to execute before it finishes.
+
+---
+
+## 27. What is a callback function?
+
+**Answer:**
+A callback is a function passed as an argument to another function, to be executed after some operation.
+
+**Example:**
+
+```js
+function greet(name, callback) {
+  console.log('Hello, ' + name);
+  callback();
+}
+greet('Bob', () => console.log('Callback executed!'));
+```
+
+---
+
+## 28. How does the `map()` function work on arrays?
+
+**Answer:**
+`map()` creates a new array by applying a function to each element of the original array.
+
+**Example:**
+
+```js
+const nums = [1, 2, 3];
+const squares = nums.map(x => x * x);
+console.log(squares); // [1, 4, 9]
+```
+
+---
+
+## 29. What is the difference between `map()` and `forEach()`?
+
+**Answer:**
+
+* `map()` returns a new array.
+* `forEach()` executes a function on each item but returns `undefined`.
+
+---
+
+## 30. What is the `filter()` method in arrays?
+
+**Answer:**
+`filter()` returns a new array with all elements that pass a test implemented by a function.
+
+**Example:**
+
+```js
+const nums = [1, 2, 3, 4];
+const evens = nums.filter(x => x % 2 === 0);
+console.log(evens); // [2, 4]
+```
+
+---
+
+## 31. What is a JavaScript object?
+
+**Answer:**
+An object is a collection of key-value pairs.
+
+**Example:**
+
+```js
+const person = {
+  name: "John",
+  age: 30,
+  greet: function() {
+    console.log("Hello " + this.name);
+  }
+};
+person.greet();  // Output: Hello John
+```
+
+---
+
+## 32. How do you access object properties?
+
+**Answer:**
+Using dot notation or bracket notation.
+
+**Example:**
+
+```js
+console.log(person.name);
+console.log(person['age']);
+```
+
+---
+
+## 33. What is the difference between `null` and an empty object `{}`?
+
+**Answer:**
+
+* `null` means “no value.”
+* `{}` is an empty object with no properties.
+
+---
+
+## 34. How do you create a class in JavaScript?
+
+**Answer:**
+Using the `class` keyword (ES6).
+
+**Example:**
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+const dog = new Animal('Dog');
+dog.speak();
+```
+
+---
+
+## 35. What is prototypal inheritance?
+
+**Answer:**
+JavaScript objects inherit properties and methods from their prototype.
+
+---
+
+## 36. How do you handle asynchronous operations without callbacks?
+
+**Answer:**
+Using Promises or async/await syntax.
+
+---
+
+## 37. What is the difference between a shallow copy and deep copy?
+
+**Answer:**
+
+* Shallow copy copies the reference to nested objects (only first level).
+* Deep copy duplicates nested objects as well.
+
+---
+
+## 38. What is the use of `Array.reduce()`?
+
+**Answer:**
+It reduces an array to a single value by applying a function to an accumulator and each element.
+
+**Example:**
+
+```js
+const nums = [1, 2, 3, 4];
+const sum = nums.reduce((acc, val) => acc + val, 0);
+console.log(sum); // 10
+```
+
+---
+
+## 39. How do you merge two arrays?
+
+**Answer:**
+Using `concat()` or spread operator `...`.
+
+**Example:**
+
+```js
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const merged = [...arr1, ...arr2]; // [1, 2, 3, 4]
+```
+
+---
+
+## 40. What is destructuring assignment?
+
+**Answer:**
+Extract values from arrays or objects into variables.
+
+**Example:**
+
+```js
+const [a, b] = [1, 2];
+const {name, age} = {name: "John", age: 25};
+```
+
+---
+
+## 41. What is event delegation?
+
+**Answer:**
+Attaching a single event listener to a parent element to manage events from multiple child elements.
+
+---
+
+## 42. What is the difference between `call()`, `apply()`, and `bind()`?
+
+**Answer:**
+
+* `call()` invokes a function with a given `this` and arguments separately.
+* `apply()` is like `call()` but arguments are passed as an array.
+* `bind()` returns a new function with `this` bound.
+
+---
+
+## 43. What are arrow functions? List benefits.
+
+**Answer:**
+Shorter syntax for functions, and they lexically bind `this`.
+
+---
+
+## 44. What is the event loop?
+
+**Answer:**
+It handles asynchronous callbacks by managing the call stack and callback queue.
+
+---
+
+## 45. What is the `setTimeout()` function? How does it work?
+
+**Answer:**
+Executes a function after a specified delay (in milliseconds).
+
+**Example:**
+
+```js
+setTimeout(() => {
+  console.log("Executed after 2 seconds");
+}, 2000);
+```
+
+---
+
+## 46. What is the difference between `null` and `undefined`?
+
+**Answer:**
+`null` is assigned intentionally; `undefined` means not assigned.
+
+---
+
+## 47. What is the use of `JSON.stringify()` and `JSON.parse()`?
+
+**Answer:**
+
+* `JSON.stringify()` converts JavaScript objects to JSON strings.
+* `JSON.parse()` parses JSON strings back into objects.
+
+---
+
+## 48. How can you check if a variable is an array?
+
+**Answer:**
+Using `Array.isArray()`.
+
+**Example:**
+
+```js
+Array.isArray([1, 2, 3]); // true
+Array.isArray({});        // false
+```
+
+---
+
+## 49. What is a Symbol in JavaScript?
+
+**Answer:**
+A unique and immutable data type used as object property keys.
+
+---
+
+## 50. How do you create a promise manually?
+
+**Answer:**
+
+```js
+const promise = new Promise((resolve, reject) => {
+  let success = true;
+  if(success) resolve("Done");
+  else reject("Failed");
+});
+promise.then(msg => console.log(msg)).catch(err => console.error(err));
+```
+
+---
+
+---
+
+# 🎯 Sample Mini Task with Code: Stopwatch
+
+**Task:** Create a stopwatch with start, stop, and reset.
+
+```html
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+<button id="reset">Reset</button>
+<div id="display">0</div>
+
+<script>
+  let count = 0;
+  let intervalId;
+
+  const display = document.getElementById('display');
+
+  document.getElementById('start').onclick = () => {
+    if (!intervalId) {
+      intervalId = setInterval(() => {
+        count++;
+        display.innerText = count;
+      }, 1000);
+    }
+  };
+
+  document.getElementById('stop').onclick = () => {
+    clearInterval(intervalId);
+    intervalId = null;
+  };
+
+  document.getElementById('reset').onclick = () => {
+    clearInterval(intervalId);
+    intervalId = null;
+    count = 0;
+    display.innerText = count;
+  };
+</script>
+```
+
+---
 
